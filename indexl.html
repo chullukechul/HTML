@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暑期學習日曆排程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #f3f4f6; /* Tailwind gray-100 */
+        }
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background-color: #e5e7eb; /* Tailwind gray-200 */
+            border: 1px solid #e5e7eb;
+            border-radius: 0.5rem;
+            overflow: hidden;
+        }
+        .calendar-cell {
+            background-color: white;
+            min-height: 120px;
+            padding: 0.5rem;
+            display: flex;
+            flex-direction: column;
+        }
+        .calendar-header {
+            background-color: #f9fafb; /* Tailwind gray-50 */
+            text-align: center;
+            font-weight: 600;
+            padding: 0.75rem 0;
+            color: #374151; /* Tailwind gray-700 */
+        }
+        .event-card {
+            font-size: 0.85rem;
+            padding: 0.4rem;
+            margin-bottom: 0.25rem;
+            border-radius: 0.25rem;
+            border-left-width: 4px;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+            word-break: break-word;
+        }
+        /* 科目顏色標籤 */
+        .subject-math { background-color: #eff6ff; border-left-color: #3b82f6; color: #1e3a8a; } /* Blue */
+        .subject-english { background-color: #fdf4ff; border-left-color: #d946ef; color: #701a75; } /* Fuchsia */
+        .subject-civics { background-color: #fef2f2; border-left-color: #ef4444; color: #7f1d1d; } /* Red */
+        .subject-biology { background-color: #f0fdf4; border-left-color: #22c55e; color: #14532d; } /* Green */
+        .subject-geography { background-color: #fff7ed; border-left-color: #f97316; color: #7c2d12; } /* Orange */
+        .subject-physics { background-color: #f5f3ff; border-left-color: #8b5cf6; color: #4c1d95; } /* Violet */
+        .subject-chinese { background-color: #fefce8; border-left-color: #eab308; color: #713f12; } /* Yellow */
+        .subject-history { background-color: #fdf2f8; border-left-color: #ec4899; color: #831843; } /* Pink */
+        .subject-review { background-color: #ecfeff; border-left-color: #06b6d4; color: #164e63; } /* Cyan */
+
+        .other-month { background-color: #f9fafb; color: #9ca3af; }
+        .today { background-color: #fffbeb; } /* Light yellow for today, if applicable */
+    </style>
+</head>
+<body class="p-4 md:p-8">
+    <div class="max-w-6xl mx-auto">
+        <header class="mb-8 text-center">
+            <h1 class="text-3xl font-bold text-gray-800 mb-2">暑期學習日曆</h1>
+            <p class="text-gray-600">7月 - 8月 學習排程與收心作業</p>
+        </header>
+
+        <div class="mb-6 flex flex-wrap justify-center gap-3">
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium subject-math">數學</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium subject-english">英文</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium subject-civics">公民</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium subject-biology">生物</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium subject-geography">地理</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium subject-physics">理化</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium subject-chinese">國文</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium subject-history">歷史</span>
+            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium subject-review">綜合複習</span>
+        </div>
+
+        <div id="calendar-container"></div>
+    </div>
+
+    <script>
+        // 定義排程資料
+        const scheduleData = [
+            { date: '2026-07-15', subject: '數學', content: '第一回 (數與數線)', class: 'subject-math' },
+            { date: '2026-07-22', subject: '數學', content: '第二回 (標準分解式與分數運算)', class: 'subject-math' },
+            { date: '2026-07-28', subject: '英文', content: '第三回 (B1)', class: 'subject-english' },
+            { date: '2026-07-28', subject: '公民', content: '單元 3', class: 'subject-civics' },
+            { date: '2026-07-29', subject: '數學', content: '第四回 (二元一次聯立方程式)', class: 'subject-math' },
+            { date: '2026-07-30', subject: '生物', content: '單元 3', class: 'subject-biology' },
+            { date: '2026-07-30', subject: '地理', content: '單元 3', class: 'subject-geography' },
+            { date: '2026-07-31', subject: '理化', content: '單元 3', class: 'subject-physics' },
+            { date: '2026-08-05', subject: '數學', content: '第五回 (直角坐標與二元一次方程式的圖形)', class: 'subject-math' },
+            { date: '2026-08-12', subject: '數學', content: '第七回 (一元一次不等式)', class: 'subject-math' },
+            // 收心作業週標示
+            { date: '2026-08-17', subject: '收心作業', content: '國文: 考卷第 6 回, 第一冊模考', class: 'subject-chinese' },
+            { date: '2026-08-18', subject: '收心作業', content: '數學: 講義單元 8,9 / 考卷 8,9 回', class: 'subject-math' },
+            { date: '2026-08-19', subject: '收心作業', content: '英文: E點通 1-2冊 p.104-113 / 考卷六回', class: 'subject-english' },
+            { date: '2026-08-20', subject: '收心作業', content: '社會: 歷史會考模考 / 地理填圖 1-12 / 公民單元 7', class: 'subject-review' },
+            { date: '2026-08-21', subject: '收心作業', content: '自然: 生物講義 9,考卷六 / 理化考卷單元 6', class: 'subject-biology' }
+        ];
+
+        // 幫手函數：取得特定月份的天數
+        function getDaysInMonth(year, month) {
+            return new Date(year, month + 1, 0).getDate();
+        }
+
+        // 幫手函數：取得特定月份第一天是星期幾 (0-6, 0 是星期日)
+        function getFirstDayOfMonth(year, month) {
+            return new Date(year, month, 1).getDay();
+        }
+
+        // 格式化日期字串為 YYYY-MM-DD
+        function formatDateString(year, month, day) {
+            return `${year}-${String(month + 1).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        }
+
+        // 建立單個月分的日曆 HTML
+        function generateMonthCalendar(year, month, monthName) {
+            const daysInMonth = getDaysInMonth(year, month);
+            const firstDay = getFirstDayOfMonth(year, month);
+            const daysOfWeek = ['日', '一', '二', '三', '四', '五', '六'];
+
+            let html = `
+                <div class="mb-10 bg-white rounded-xl shadow-md overflow-hidden">
+                    <div class="bg-indigo-600 text-white text-center py-4">
+                        <h2 class="text-2xl font-bold">${year}年 ${monthName}</h2>
+                    </div>
+                    <div class="calendar-grid">
+            `;
+
+            // 加入星期標頭
+            daysOfWeek.forEach(day => {
+                html += `<div class="calendar-header">${day}</div>`;
+            });
+
+            // 加入上個月的空白天數
+            let currentDayOfWeek = firstDay;
+            for (let i = 0; i < firstDay; i++) {
+                html += `<div class="calendar-cell other-month"></div>`;
+            }
+
+            // 加入當月的天數與事件
+            for (let day = 1; day <= daysInMonth; day++) {
+                const currentDateStr = formatDateString(year, month, day);
+                const eventsToday = scheduleData.filter(event => event.date === currentDateStr);
+                
+                // 標記是否為收心作業週 (8/17 - 8/30)
+                let cellClass = 'calendar-cell';
+                let dateStyle = 'font-bold text-gray-700';
+                
+                if (year === 2026 && month === 7 && day >= 17 && day <= 30) {
+                     cellClass += ' bg-gray-50'; // 微微變更背景色區分收心週
+                }
+
+                html += `
+                    <div class="${cellClass}">
+                        <div class="text-right mb-1">
+                            <span class="${dateStyle}">${day}</span>
+                        </div>
+                `;
+
+                // 渲染當天事件
+                eventsToday.forEach(event => {
+                    html += `
+                        <div class="event-card ${event.class}">
+                            <div class="font-semibold">${event.subject}</div>
+                            <div class="text-xs mt-0.5">${event.content}</div>
+                        </div>
+                    `;
+                });
+
+                // 收心週的特殊提示 (如果當天沒有排特定事項，但屬於該區間)
+                if (year === 2026 && month === 7 && day >= 17 && day <= 30 && eventsToday.length === 0) {
+                     html += `
+                        <div class="event-card subject-review opacity-70">
+                            <div class="font-semibold">收心作業週</div>
+                            <div class="text-xs mt-0.5">請持續完成進度</div>
+                        </div>
+                    `;
+                }
+
+                html += `</div>`;
+                
+                currentDayOfWeek = (currentDayOfWeek + 1) % 7;
+            }
+
+            // 補足月底的空白天數
+            if (currentDayOfWeek !== 0) {
+                for (let i = currentDayOfWeek; i < 7; i++) {
+                    html += `<div class="calendar-cell other-month"></div>`;
+                }
+            }
+
+            html += `
+                    </div>
+                </div>
+            `;
+            
+            return html;
+        }
+
+        // 初始化渲染
+        function initCalendar() {
+            const container = document.getElementById('calendar-container');
+            // 注意：JavaScript 中 Month 是從 0 開始的，6 代表 7月，7 代表 8月
+            
+            let fullHtml = '';
+            // 產生 7 月日曆
+            fullHtml += generateMonthCalendar(2026, 6, '7月');
+            // 產生 8 月日曆
+            fullHtml += generateMonthCalendar(2026, 7, '8月');
+            
+            container.innerHTML = fullHtml;
+        }
+
+        // 執行初始化
+        initCalendar();
+    </script>
+</body>
+</html>
