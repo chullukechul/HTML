@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>寄送錢包給毓倫 - 一圖流流程</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            background-color: #FFF7ED; /* 溫暖的橘色背景 */
+        }
+        /* 隱藏滾動條讓截圖更乾淨 */
+        ::-webkit-scrollbar {
+            width: 0px;
+            background: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased text-gray-800 flex justify-center py-6 px-4">
+
+    <div class="max-w-md w-full bg-orange-50 rounded-3xl shadow-2xl overflow-hidden border-4 border-orange-200">
+        
+        <!-- 標題區塊 -->
+        <div class="bg-gradient-to-b from-orange-400 to-orange-500 text-white p-6 text-center shadow-md">
+            <h1 class="text-3xl font-black mb-2 tracking-wide">📦 寄送錢包任務</h1>
+            <p class="text-lg font-medium opacity-90">給媽媽的超簡單圖解流程</p>
+        </div>
+
+        <div class="p-6 space-y-2">
+
+            <!-- 步驟 1 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 relative">
+                <div class="absolute -top-3 -left-3 bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xl shadow-md">1</div>
+                <h2 class="text-xl font-bold text-blue-700 mb-3 flex items-center gap-2">
+                    <span>🏠 出發前準備</span>
+                </h2>
+                <ul class="space-y-3 text-lg font-medium text-gray-700">
+                    <li class="flex items-start gap-2">
+                        <span class="text-2xl">📸</span>
+                        <span><b>必做：</b>打開錢包拍張照存證。</span>
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-500">
+                        <span class="text-2xl">💵</span>
+                        <span><b class="text-gray-600">【可選】</b>把裡面的現金拿出來。</span>
+                    </li>
+                    <li class="flex items-start gap-2 text-gray-500">
+                        <span class="text-2xl">🌧️</span>
+                        <span><b class="text-gray-600">【可選】</b>用塑膠袋/夾鏈袋包起來防雨。</span>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- 向下箭頭 -->
+            <div class="flex justify-center py-1">
+                <svg class="w-10 h-10 text-orange-400 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+
+            <!-- 步驟 2：重要分支 -->
+            <div class="bg-yellow-100 rounded-2xl p-5 shadow-sm border-4 border-yellow-400 relative">
+                <div class="absolute -top-3 -left-3 bg-yellow-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xl shadow-md">2</div>
+                <h2 class="text-xl font-black text-yellow-800 mb-4 text-center">
+                    ⚠️ 檢查：現在身上有帶「身分證」嗎？
+                </h2>
+                
+                <div class="flex gap-3">
+                    <!-- 沒帶的路線 -->
+                    <div class="flex-1 bg-red-50 border-2 border-red-300 rounded-xl p-3 text-center">
+                        <div class="text-2xl mb-1">❌ 沒有</div>
+                        <div class="text-red-700 font-bold text-lg mb-2">回家拿</div>
+                        <svg class="w-6 h-6 text-red-400 mx-auto transform rotate-90" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 10h10a8 8 0 018 8v2M3 10l6 6m-6-6l6-6"></path></svg>
+                        <div class="text-xs text-red-500 mt-1">拿好再出發</div>
+                    </div>
+                    
+                    <!-- 有帶的路線 -->
+                    <div class="flex-1 bg-green-50 border-2 border-green-400 rounded-xl p-3 text-center shadow-inner">
+                        <div class="text-2xl mb-1">✅ 有帶</div>
+                        <div class="text-green-700 font-bold text-lg mb-2">去郵局</div>
+                        <svg class="w-6 h-6 text-green-500 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path></svg>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 向下箭頭 -->
+            <div class="flex justify-center py-1">
+                <svg class="w-10 h-10 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+
+            <!-- 步驟 3 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 relative">
+                <div class="absolute -top-3 -left-3 bg-purple-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xl shadow-md">3</div>
+                <h2 class="text-xl font-bold text-purple-700 mb-3 flex items-center gap-2">
+                    <span>🏤 郵局櫃台辦理</span>
+                </h2>
+                <div class="space-y-4">
+                    <div class="flex gap-3 items-start">
+                        <div class="text-2xl">📦</div>
+                        <div class="text-lg">
+                            <span class="font-bold">包裝：</span><br>
+                            <span class="text-gray-600 text-base">跟櫃台買「小型便利箱」或「破壞袋」把錢包裝進去。</span>
+                        </div>
+                    </div>
+                    <div class="bg-purple-50 p-4 rounded-xl border border-purple-200">
+                        <span class="font-bold text-purple-800 block mb-1">🗣️ 直接對櫃台說：</span>
+                        <p class="text-xl font-black text-purple-900 leading-snug">
+                            「我要寄<span class="text-red-600 underline">國內快捷</span>，要加<span class="text-red-600 underline">報值</span>，這是要<span class="text-red-600 underline">存局候領</span>的。」
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 向下箭頭 -->
+            <div class="flex justify-center py-1">
+                <svg class="w-10 h-10 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+
+            <!-- 步驟 4 -->
+            <div class="bg-white rounded-2xl p-5 shadow-sm border border-gray-100 relative">
+                <div class="absolute -top-3 -left-3 bg-teal-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xl shadow-md">4</div>
+                <h2 class="text-xl font-bold text-teal-700 mb-3 flex items-center gap-2">
+                    <span>✍️ 填寫託運單 (照抄)</span>
+                </h2>
+                
+                <!-- 模擬託運單樣式 -->
+                <div class="bg-[url('https://www.transparenttextures.com/patterns/cream-paper.png')] bg-yellow-50 border-2 border-gray-400 p-4 rounded-lg shadow-inner font-mono relative overflow-hidden">
+                    <div class="absolute right-[-20px] top-4 border-2 border-red-500 text-red-500 transform rotate-12 px-2 py-1 text-xs font-bold font-sans">務必寫存局候領</div>
+                    
+                    <div class="mb-2">
+                        <span class="text-gray-500 text-sm block">收件人：</span>
+                        <span class="text-2xl font-black tracking-widest text-black">張毓倫</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-gray-500 text-sm block">聯絡電話：</span>
+                        <span class="text-xl font-bold text-blue-800">0905-516-667</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-gray-500 text-sm block">郵遞區號：</span>
+                        <span class="text-xl font-bold text-black">300035</span>
+                    </div>
+                    <div>
+                        <span class="text-gray-500 text-sm block">收件地址：</span>
+                        <span class="text-lg font-bold text-black leading-tight block">
+                            新竹市東區南大路621號<br>
+                            <span class="text-red-600 bg-yellow-200 px-1">(新竹南大路郵局 存局候領)</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 向下箭頭 -->
+            <div class="flex justify-center py-1">
+                <svg class="w-10 h-10 text-orange-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </div>
+
+            <!-- 步驟 5 -->
+            <div class="bg-green-100 rounded-2xl p-5 shadow-sm border-2 border-green-300 relative mb-4">
+                <div class="absolute -top-3 -left-3 bg-green-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold text-xl shadow-md">5</div>
+                <h2 class="text-xl font-bold text-green-800 mb-2 flex items-center gap-2">
+                    <span>🎉 寄出後回報</span>
+                </h2>
+                <div class="text-lg text-green-900 font-medium">
+                    請把<span class="bg-green-200 px-1 rounded">包裹收據</span>拍給我！<br>
+                    <span class="text-base text-green-700 mt-2 block">我會自己上網查進度去領，辛苦媽媽了！❤️</span>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
